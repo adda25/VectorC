@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 #ifndef VECTOR_C_H
 #define VECTOR_C_H
 #endif
