@@ -32,8 +32,8 @@ Vector_clear(vec);
 If you reserve the memory before start pushing, there is no story.
 Otherwise seems that memory reallocation is faster in the C version if
 the reallocation amount is high.
-![GitHub Logo](vector_test.png)
-
+![Without reserve](vector_test.png)
+Format: ![Alt Text](url)
 ## Build
 Compile with:
 

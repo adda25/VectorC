@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
 	std::chrono::high_resolution_clock::time_point t4 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_span1 =std::chrono:: duration_cast<std::chrono::duration<double> >(t4 - t3);
 	std::cout << "-> C vector reserve time: " << time_span1.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	// Push back
 	std::chrono::high_resolution_clock::time_point t5 = std::chrono::high_resolution_clock::now();
@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
 	std::chrono::high_resolution_clock::time_point t6 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_span2 =std::chrono:: duration_cast<std::chrono::duration<double> >(t6 - t5);
 	std::cout << "-> C vector push_back time: " << time_span2.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	// Free
 	std::chrono::high_resolution_clock::time_point t7 = std::chrono::high_resolution_clock::now();
@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 	std::chrono::high_resolution_clock::time_point t8 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_span3 =std::chrono:: duration_cast<std::chrono::duration<double> >(t8 - t7);
 	std::cout << "-> C vector clear time: " << time_span3.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	
 	// STD VECTOR
@@ -70,14 +70,14 @@ int main(int argc, char **argv) {
 	std::chrono::high_resolution_clock::time_point t10 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_spanCPP =std::chrono:: duration_cast<std::chrono::duration<double> >(t10 - t9);
 	std::cout << "-> std::vector init time: " << time_spanCPP.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	std::chrono::high_resolution_clock::time_point t11 = std::chrono::high_resolution_clock::now();
 	vec1.reserve(memCpp);
 	std::chrono::high_resolution_clock::time_point t12 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_spanCPP1 =std::chrono:: duration_cast<std::chrono::duration<double> >(t12 - t11);
 	std::cout << "-> std::vector reserve time: " << time_spanCPP1.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	std::chrono::high_resolution_clock::time_point t13 = std::chrono::high_resolution_clock::now();
 	for (int i = 0; i < valCPP; i++){
@@ -87,14 +87,14 @@ int main(int argc, char **argv) {
 	std::chrono::high_resolution_clock::time_point t14 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_spanCPP2 =std::chrono:: duration_cast<std::chrono::duration<double> >(t14 - t13);
 	std::cout << "-> std::vector push back time: " << time_spanCPP2.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 	
 	std::chrono::high_resolution_clock::time_point t15 = std::chrono::high_resolution_clock::now();
 	vec1.clear();
 	std::chrono::high_resolution_clock::time_point t16 = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> time_spanCPP3 =std::chrono:: duration_cast<std::chrono::duration<double> >(t16 - t15);
 	std::cout << "-> std::vector clear time: " << time_spanCPP3.count() << " seconds.";
-  std::cout << std::endl;
+    std::cout << std::endl;
 
 	return 0;
 }

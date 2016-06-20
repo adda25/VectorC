@@ -51,13 +51,13 @@ typedef size_t mem_size;
 	VECTOR AVAIABLE FUNCTIONS			
 */
 #define Vector_init(VECTOR, T) Vector_##T VECTOR = {0,               							\
- 													                          0, 			   			    					\		
-												                            &T##_MALLOC, 					    		\
- 												                            &T##_RESERVE,					    		\
-					  							                          &T##_FREE,		   							\
-					  							                          &T##_PUSHBACK,			  		    \
-												                            &T##_POPBACK   								\
-													                          }; VECTOR.init(&VECTOR)			  \
+ 													0, 			   			    				\		
+												    &T##_MALLOC, 					    		\
+ 												    &T##_RESERVE,					    		\
+					  							    &T##_FREE,		   							\
+					  							    &T##_PUSHBACK,			  		            \
+												    &T##_POPBACK   								\
+													}; VECTOR.init(&VECTOR)			            \
 														     																	  													  
 #define Vector_reserve(VECTOR, SIZE) VECTOR.reserve(&VECTOR, SIZE)			  
 #define Vector_clear(VECTOR) VECTOR.clear(&VECTOR.ptr)
@@ -72,64 +72,64 @@ typedef size_t mem_size;
 /* 
 	VECTOR DEFINITION				
 */												  																									
-#define Vector_template(T) 																	                  \
-	typedef struct Vector_##T;																	                \
+#define Vector_template(T) 																	    \
+	typedef struct Vector_##T;																	\
 	typedef void (*memory_alloc_##T)(Vector_##T* vec);						        			\
-	typedef void (*memory_realloc_##T)(Vector_##T* vec, const mem_size size); 	\
-	typedef void (*memory_free_##T)(T** ptr);												            \
-	typedef void (*element_pop_##T)(T* ptr, mem_size* index);			  					  \
-	typedef void (*element_push_##T)(Vector_##T* vec, const T* elem);					  \
-	typedef struct Vector_##T {																                  \
-		mem_size              size;																                \
-		mem_size              index;															                \
-		memory_alloc_##T  	  init;		 	  	 /* Initial memory allocation */			\
+	typedef void (*memory_realloc_##T)(Vector_##T* vec, const mem_size size); 	                \
+	typedef void (*memory_free_##T)(T** ptr);												    \
+	typedef void (*element_pop_##T)(T* ptr, mem_size* index);			  					    \
+	typedef void (*element_push_##T)(Vector_##T* vec, const T* elem);					        \
+	typedef struct Vector_##T {																    \
+		mem_size              size;																\
+		mem_size              index;															\
+		memory_alloc_##T  	  init;		 	  	 /* Initial memory allocation */			    \
 		memory_realloc_##T    reserve;  	 	 /* Realloc of the vector */					\
-		memory_free_##T	      clear;			   /* Memory free */								    \
+		memory_free_##T	      clear;			  /* Memory free */								\
 		element_push_##T      push_back;		 /* Element push_back */					  	\
 		element_pop_##T       pop_back;			 /* Element pop_back */						  	\
-																								                              \
-		T* ptr;																				                            \
-	} Vector_##T;																		                            \																	
-																								                              \
-	void T##_MALLOC(Vector_##T* vec) {															            \
-		vec->ptr = V_MALLOC(T); 						        								              \
-		if (vec->ptr == NULL) {																	                  \
-			printf("ERROR: Memory allocation fail\n");										        	\
-			return;																				                          \
-		} vec->size = INITIAL_VECTOR_SIZE;														            \							   	 								
-	}																							                              \
-																								                              \
-	void T##_RESERVE(Vector_##T* vec, const mem_size size) {									  \
-		if(vec->size < size) {vec->ptr = V_RESERVE(T);}			   								    \	
-		if (vec->ptr == NULL) {																	                  \
-			printf("ERROR: Memory re-allocation fail\n");										        \
-			return;																				                          \
-		}																						                              \
-		vec->size = size; 																		                    \
-	}																							                              \
-																								                              \
-	void T##_PUSHBACK(Vector_##T* vec, const T* elem) {											    \														
-		if(vec->index == vec->size) {															                \
-			vec->ptr = V_REALLOC(T);															                  \
-			if (vec->ptr == NULL) {																                  \
-				printf("ERROR: Memory re-allocation fail\n"); return;							    \
-			}																					                              \
-			vec->size *= VECTOR_GROW_FACTOR; 													              \		
-		}																						                              \																						
-		*(vec->ptr + vec->index) = *elem; 								   						          \
-		vec->index += 1;																		                      \
-	}																							                              \
-																								                              \
-	void T##_POPBACK(T* ptr, mem_size* index) {  											          \
-		if(*index == 0) 																		                      \
-			return;																				                          \
-		*index -= 1;																			                        \		
-	}																							                              \
-																								                              \
-	void T##_FREE(T** ptr) {																	                  \
-		free(*ptr);																				                        \
-	}																							                              \
-																								                              \		
+																								\
+		T* ptr;																				    \
+	} Vector_##T;																		        \																	
+																								\
+	void T##_MALLOC(Vector_##T* vec) {															\
+		vec->ptr = V_MALLOC(T); 						        								\
+		if (vec->ptr == NULL) {																	\
+			printf("ERROR: Memory allocation fail\n");										    \
+			return;																				\
+		} vec->size = INITIAL_VECTOR_SIZE;														\							   	 								
+	}																							\
+																								\
+	void T##_RESERVE(Vector_##T* vec, const mem_size size) {									\
+		if(vec->size < size) {vec->ptr = V_RESERVE(T);}			   								\	
+		if (vec->ptr == NULL) {																	\
+			printf("ERROR: Memory re-allocation fail\n");										\
+			return;																				\
+		}																						\
+		vec->size = size; 																		\
+	}																							\
+																								\
+	void T##_PUSHBACK(Vector_##T* vec, const T* elem) {											\														
+		if(vec->index == vec->size) {															\
+			vec->ptr = V_REALLOC(T);															\
+			if (vec->ptr == NULL) {																\
+				printf("ERROR: Memory re-allocation fail\n"); return;							\
+			}																					\
+			vec->size *= VECTOR_GROW_FACTOR; 													\		
+		}																						\																						
+		*(vec->ptr + vec->index) = *elem; 								   						\
+		vec->index += 1;																		\
+	}																							\
+																								\
+	void T##_POPBACK(T* ptr, mem_size* index) {  											    \
+		if(*index == 0) 																		\
+			return;																				\
+		*index -= 1;																			\		
+	}																							\
+																								\
+	void T##_FREE(T** ptr) {																	\
+		free(*ptr);																				\
+	}																						    \
+																								\		
 #ifdef __cplusplus
 }
 #endif
