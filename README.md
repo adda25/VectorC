@@ -33,7 +33,7 @@ If you reserve the memory before start pushing, there is no story.
 Otherwise seems that memory reallocation is faster in the C version if
 the reallocation amount is high.
 ![Without reserve](vector_test.png)
-Format: ![Alt Text](url)
+
 ## Build
 Compile with:
 
